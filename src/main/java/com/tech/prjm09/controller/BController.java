@@ -59,9 +59,6 @@ public class BController {
 	
 	@RequestMapping("/content_view")
 	private String content_view(HttpServletRequest request,Model model) {
-//		model.addAttribute("request", request);
-//		command=new BContentCommand();
-//		command.execute(model);
 		String bid=request.getParameter("bid");
 		BDto dto=iDao.contentView(bid);
 		model.addAttribute("content_view",dto);
@@ -71,45 +68,55 @@ public class BController {
 	
 	@RequestMapping("/modify_view")
 	private String modify_view(HttpServletRequest request,Model model) {
-		model.addAttribute("request", request);
-		command=new BModifyViewCommand();
-		command.execute(model);
+		String bid=request.getParameter("bid");
+		BDto dto=iDao.modifyView(bid);
+		model.addAttribute("content_view",dto);
 		
 		return "modify_view";
 	}
 	
 	@RequestMapping("/modify")
 	private String modify(HttpServletRequest request,Model model) {
-		model.addAttribute("request", request);
-		command=new BModifyCommand();
-		command.execute(model);
+		String bid=request.getParameter("bid");
+		String bname=request.getParameter("bname");
+		String btitle=request.getParameter("btitle");
+		String bcontent=request.getParameter("bcontent");
+		iDao.modify(bid, bname, btitle, bcontent);
 		
 		return "redirect:list";
 	}
 	
 	@RequestMapping("/reply_view")
 	private String reply_view(HttpServletRequest request,Model model) {
-		model.addAttribute("request", request);
-		command=new BReplyViewCommand();
-		command.execute(model);
+		String bid=request.getParameter("bid");
+		BDto dto=iDao.reply_View(bid);
+		model.addAttribute("reply_view",dto);
 		
 		return "reply_view";
 	}
 
 	@RequestMapping("/reply")
 	private String reply(HttpServletRequest request,Model model) {
-		model.addAttribute("request", request);
-		command=new BReplyCommand();
-		command.execute(model);
+		String bid=request.getParameter("bid");
+		String bname=request.getParameter("bname");
+		String btitle=request.getParameter("btitle");
+		String bcontent=request.getParameter("bcontent");
+		String bgroup=request.getParameter("bgroup");
+		String bstep=request.getParameter("bstep");
+		String bindent=request.getParameter("bindent");
+		iDao.reply(bid, bname, btitle, bcontent, bgroup, bstep, bindent);
+		
 		
 		return "redirect:list";
 	}
 	
 	@RequestMapping("/delete")
 	private String delete(HttpServletRequest request,Model model) {
-		model.addAttribute("request", request);
-		command=new BDeleteCommand();
-		command.execute(model);
+//		model.addAttribute("request", request);
+//		command=new BDeleteCommand();
+//		command.execute(model);
+		String bid=request.getParameter("bid");
+		iDao.delete(bid);
 		
 		return "redirect:list";
 	}
