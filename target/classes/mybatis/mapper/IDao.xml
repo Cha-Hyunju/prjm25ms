@@ -39,5 +39,13 @@
 	<delete id="delete">
 	DELETE FROM REPLYBOARD WHERE BID=#{param1}
 	</delete>
+	
+	<update id="replyShape">
+	UPDATE REPLYBOARD SET BSTEP=BSTEP+1 WHERE BGROUP=#{param1} AND BSTEP>#{param2}
+	</update>
+	
+	<update id="upHit">
+	UPDATE REPLYBOARD SET BHIT=BHIT+1 WHERE BID=#{param1}
+	</update>
 
 </mapper>
