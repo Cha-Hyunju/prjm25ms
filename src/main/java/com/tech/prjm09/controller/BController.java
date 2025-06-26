@@ -1,5 +1,7 @@
 package com.tech.prjm09.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import com.tech.command.BReplyCommand;
 import com.tech.command.BReplyViewCommand;
 import com.tech.command.BWriteCommand;
 import com.tech.prjm09.dao.IDao;
+import com.tech.prjm09.dto.BDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -31,9 +34,8 @@ public class BController {
 	
 	@RequestMapping("/list")
 	private String list(Model model) {
-		System.out.println("list()");
-		command=new BListCommand();
-		command.execute(model);
+		ArrayList<BDto> dto=iDao.list();
+		model.addAttribute("list",dto);
 				
 		return "list";
 
