@@ -59,9 +59,6 @@ public class BController {
 	
 	@RequestMapping("/content_view")
 	private String content_view(HttpServletRequest request,Model model) {
-//		model.addAttribute("request", request);
-//		command=new BContentCommand();
-//		command.execute(model);
 		String bid=request.getParameter("bid");
 		BDto dto=iDao.contentView(bid);
 		model.addAttribute("content_view",dto);
@@ -71,9 +68,9 @@ public class BController {
 	
 	@RequestMapping("/modify_view")
 	private String modify_view(HttpServletRequest request,Model model) {
-		model.addAttribute("request", request);
-		command=new BModifyViewCommand();
-		command.execute(model);
+		String bid=request.getParameter("bid");
+		BDto dto=iDao.modifyView(bid);
+		model.addAttribute("content_view",dto);
 		
 		return "modify_view";
 	}
