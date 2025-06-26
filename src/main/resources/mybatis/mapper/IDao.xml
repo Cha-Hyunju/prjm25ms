@@ -18,5 +18,9 @@
 	<select id="contentView" resultType="com.tech.prjm09.dto.BDto">
 	SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,BHIT,BGROUP,BSTEP,BINDENT FROM REPLYBOARD WHERE BID=#{param1}
 	</select>
+	
+	<select id="modifyView">
+	SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,BHIT,BGROUP,BSTEP,BINDENT FROM REPLYBOARD WHERE BID=#{param1}
+	</select>
 
 </mapper>
