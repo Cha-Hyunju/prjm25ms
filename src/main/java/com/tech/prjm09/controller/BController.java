@@ -60,6 +60,7 @@ public class BController {
 	@RequestMapping("/content_view")
 	private String content_view(HttpServletRequest request,Model model) {
 		String bid=request.getParameter("bid");
+		iDao.upHit(bid);
 		BDto dto=iDao.contentView(bid);
 		model.addAttribute("content_view",dto);
 		
@@ -104,6 +105,7 @@ public class BController {
 		String bgroup=request.getParameter("bgroup");
 		String bstep=request.getParameter("bstep");
 		String bindent=request.getParameter("bindent");
+		iDao.replyShape(bgroup, bstep);
 		iDao.reply(bid, bname, btitle, bcontent, bgroup, bstep, bindent);
 		
 		
