@@ -1,5 +1,6 @@
 package com.tech.prjm09.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +14,20 @@ import com.tech.command.BModifyViewCommand;
 import com.tech.command.BReplyCommand;
 import com.tech.command.BReplyViewCommand;
 import com.tech.command.BWriteCommand;
+import com.tech.prjm09.dao.IDao;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class BController {
 	BCommand command;
+	
+	private final IDao iDao;
+	
+	@Autowired
+	public BController(IDao iDao) {
+		this.iDao=iDao;
+	}
 	
 	@RequestMapping("/list")
 	private String list(Model model) {
